@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+ <html lang="de">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agnes Nordenholz | Slow Luxury</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@200;300;400&display=swap"
+ rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fcfbf9;
+            --text-main: #1a1a1a;
+            --text-light: #666666;
+            --accent-tan: #f2f0eb;
+            --border-color: #e5e5e5;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        /* --- Sidebar Navigation --- */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            border-right: 1px solid var(--border-color);
+        }
+        .sidebar a {
+            padding: 15px 32px;
+            text-decoration: none;
+            font-size: 13px;
+            color: var(--text-main);
+            display: block;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+        .sidebar a:hover { color: var(--text-light); }
+        .sidebar .closebtn { position: absolute; top: 10px; right: 25px; font-size: 36px; cursor: pointer; }
+        /* --- Header --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: #fff;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-left, .nav-right { flex: 1; display: flex; align-items: center; gap: 20px; }
+        .nav-right { justify-content: flex-end; }
+        
+        .menu-icon { font-size: 20px; cursor: pointer; display: flex; align-items: center; }
+        .nav-item-link { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; color: var(--text-main); font-weight: 300; }
+        .logo-text { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 24px; 
+            text-transform: uppercase; 
+            letter-spacing: 5px; 
+            font-weight: 400;
+            margin: 0;
+            text-align: center;
+            flex: 2;
+        }
+        .shop-icon-img { height: 18px; width: auto; cursor: pointer; }
+        /* --- Overlapping Frame Section --- */
+        .frame-section {
+            position: relative;
+            max-width: 1400px;
+            margin: 60px auto;
+            min-height: 550px;
+            display: flex;
+            align-items: center;
+        }
+        .frame-img {
+            position: absolute;
+            right: 5%;
+            top: 0;
+            width: 65%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        .floating-card {
+            position: relative;
+            margin-left: 8%;
+            background: var(--accent-tan);
+            padding: 80px 60px; /* Increased top/bottom padding for the new layout */
+            width: 38%;
+            z-index: 2;
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            text-align: center; 
+            align-items: center;
+        }
+        /* NEW: Centered Logo above the name */
+        .card-logo-top {
+            height: 55px; /* Slightly bigger for the top position */
+            width: auto;
+            margin-bottom: 25px; /* Space between logo and name */
+            opacity: 0.95;
+        }
+        .floating-card h1, .floating-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin: 0 0 15px 0; /* Pushed the tagline down slightly */
+            font-weight: 300;
+        }
+        .floating-card p.tagline { 
+            font-size: 0.75rem; 
+            letter-spacing: 1.5px; 
+            color: var(--text-light); 
+            text-transform: uppercase;
+            margin: 0;
+            width: 100%;
+        }
+        .floating-card .description {
+            text-transform: none;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-top: 30px; /* More space for the text block */
+            max-width: 90%;
+            text-align: left;
+        }
+        /* --- Intro Block --- */
+        .intro-block {
+            max-width: 900px;
+            margin: 100px auto 60px;
+            padding: 0 5%;
+        }
+        .brand-label { 
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem; 
+            font-style: italic;
+            letter-spacing: 1px; 
+            font-weight: 300;
+        }
+        .intro-text { font-size: 0.95rem; color: var(--text-light); margin: 30px 0; line-height: 1.9; }
+        .shop-link { font-size: 0.8rem; text-decoration: underline; color: #000; text-underline-offset: 5px; }
+        /* --- Gallery Grid --- */
+        .gallery-container {
+            margin: 80px 0;
+            padding: 0 5%;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+        }
+        .gallery-item { height: 320px; overflow: hidden; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        /* --- Journal Section --- */
+        .journal-section {
+            background-color: #fff;
+            border-top: 1px solid var(--border-color);
+            padding: 100px 5%;
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            align-items: center;
+        }
+        .journal-text { max-width: 500px; }
+        .journal-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; font-style: italic; margin-bottom: 25px; }
+        .journal-text p { font-size: 0.85rem; color: var(--text-light); line-height: 2; margin-bottom: 20px; }
+        
+        .see-more {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-weight: 400;
+        }
+        .journal-img { width: 300px; height: 400px; object-fit: cover; border: 10px solid var(--bg-color); }
+        /* --- Footer --- */
+        footer {
+            padding: 60px 5% 40px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
+        .footer-link { text-decoration: none; color: var(--text-main); font-size: 10px; text-transform: uppercase; letter-spacing: 2px; }
+        .copyright { font-size: 10px; color: var(--text-light); text-transform: uppercase; letter-spacing: 1.5px; }
+        @media (max-width: 1024px) {
+            .frame-img { width: 100%; position: static; height: 400px; }
+            .frame-section { flex-direction: column; min-height: auto; }
+            .floating-card { width: 90%; margin: -40px auto 0; padding: 40px 30px; }
+            .card-logo-top { height: 40px; margin-bottom: 15px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .journal-section { flex-direction: column-reverse; text-align: center; }
+        }
+    </style>
+ </head>
+ <body>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">Shop</a>
+        <a href="#">Clothes</a>
+        <a href="#">Bags</a>
+        <a href="#">Interior</a>
+        <a href="#">Jewellery</a>
+        <a href="#">Custom made</a>
+        <a href="#">The Wedding suit</a>
+        <a href="#">Our story</a>
+    </div>
+    <header>
+        <div class="nav-left">
+            <div class="menu-icon" onclick="openNav()">☰</div>
+            <a href="#" class="nav-item-link">About me</a>
+            <a href="#" class="nav-item-link">Contact</a>
+        </div>
+        <h1 class="logo-text">Agnes Nordenholz</h1>
+        <div class="nav-right">
+            <a href="#" class="nav-item-link">Newsletter</a>
+            <div class="nav-item-link">
+                <a href="#" style="text-decoration:none; color:inherit;">DE</a> | 
+                <a href="#" style="text-decoration:none; color:inherit;">EN</a>
+            </div>
+            <img src="shopping-bag.png" class="shop-icon-img" alt="Cart">
+        </div>
+    </header>
+    <section class="frame-section">
+        <img src="A9.jpg" class="frame-img" alt="Agnes Nordenholz Hero">
+        <div class="floating-card">
+            <img src="Logo.png" class="card-logo-top" alt="Logo">
+            <h1>Agnes Nordenholz</h1>
+            <p class="tagline">Designed in Germany. Produced in Italy.</p>
+        </div>
+    </section>
+    <section class="intro-block">
+        <span class="brand-label">Slow Luxury Atelier</span>
+        <p class="intro-text">
+            Defined by a deep respect for heritage and natural textures, Agnes Nordenholz 
+            crafts a narrative of "Slow Luxury." From the heart of Berlin, each creation 
+            honors the artisanal process, ensuring every stitch carries the soul of the maker.
+        </p>
+        <a href="#" class="shop-link">AGNES NORDENHOLZ PRODUCTS ↗</a>
+    </section>
+    <div class="gallery-container">
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="A1.jpg"></div>
+            <div class="gallery-item"><img src="A2.jpg"></div>
+            <div class="gallery-item"><img src="A3.jpg"></div>
+            <div class="gallery-item"><img src="A4.jpg"></div>
+            <div class="gallery-item"><img src="A5.jpg"></div>
+            <div class="gallery-item"><img src="A6.jpg"></div>
+        </div>
+    </div>
+    <section class="frame-section">
+        <img src="A7.jpg" class="frame-img" alt="Brand Philosophy">
+        <div class="floating-card">
+            <img src="Logo.png" class="card-logo-top" alt="Logo">
+            <h2>Our Philosophy</h2>
+            <p class="description">
+                Our mission is to create democratic designs possessing both functionality and beauty. 
+                Combining artisanal skill with a continuous drive to support emerging talent, 
+                Agnes Nordenholz has built a foundation where tradition meets the avant-garde.
+            </p>
+        </div>
+    </section>
+    <section class="journal-section">
+        <div class="journal-text">
+            <h3>A conversation with Anna Wendt, film producer</h3>
+            <p>
+                When I first met Anna, we immediately connected through our shared concern for our mother, who needed care. At that time, we were both intensely focused
+ on organizing her care, confronted with dementia in all its facets, bureaucracy with health insurance companies and authorities, absurd everyday situations, and
+ emotional exhaustion. We talked about responsibility and grief, guilt, and the struggle not only for our mothers but also for our own livelihoods.
+            </p>
+            <a href="#" class="see-more">SEE MORE</a>
+        </div>
+        <img src="A10.jpg" class="journal-img" alt="Anna Wendt Conversation">
+    </section>
+    <footer>
+        <div class="footer-links">
+            <a href="#" class="footer-link">Instagram</a>
+            <a href="#" class="footer-link">Facebook</a>
+            <a href="#" class="footer-link">TikTok</a>
+            <a href="#" class="footer-link">Legal Notice</a>
+            <a href="#" class="footer-link">AGB</a>
+            <a href="#" class="footer-link">Privcy and Policy</a>
+            
+        </div>
+        <div class="copyright">© Agnes Nordenholz</div>
+    </footer>
+    <script>
+        function openNav() { document.getElementById("mySidebar").style.width = "320px"; }
+        function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
+    </script>
+ </body>
+ </html>

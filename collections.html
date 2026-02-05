@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+ <html lang="de">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections | Agnes Nordenholz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@200;300;400&display=swap"
+ rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fcfbf9;
+            --text-main: #1a1a1a;
+            --text-light: #666666;
+            --accent-tan: #f2f0eb;
+            --border-color: #e5e5e5;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        /* --- Sidebar Navigation (Same as Page 1) --- */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            border-right: 1px solid var(--border-color);
+        }
+        .sidebar a {
+            padding: 15px 32px;
+            text-decoration: none;
+            font-size: 13px;
+            color: var(--text-main);
+            display: block;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+        .sidebar .closebtn { position: absolute; top: 10px; right: 25px; font-size: 36px; cursor: pointer; }
+        /* --- Header (Same as Page 1) --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: #fff;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-left, .nav-right { flex: 1; display: flex; align-items: center; gap: 20px; }
+        .nav-right { justify-content: flex-end; }
+        .menu-icon { font-size: 20px; cursor: pointer; }
+        .nav-item-link { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; color: var(--text-main); font-weight: 300; }
+        
+        .logo-text { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 24px; 
+            text-transform: uppercase; 
+            letter-spacing: 5px; 
+            font-weight: 400;
+            margin: 0;
+            text-align: center;
+            flex: 2;
+        }
+        /* --- Hero Section (Overlapping Format) --- */
+        .frame-section {
+            position: relative;
+            max-width: 1400px;
+            margin: 60px auto;
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+        }
+        .frame-img {
+            position: absolute;
+            right: 5%;
+            top: 0;
+            width: 65%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        .floating-card {
+            position: relative;
+            margin-left: 8%;
+            background: var(--accent-tan);
+            padding: 60px;
+            width: 38%;
+            z-index: 2;
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.02);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .card-logo-top { height: 50px; margin-bottom: 20px; }
+        .floating-card h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 300;
+            margin: 0;
+        }
+        /* --- Collections Grid --- */
+        .collections-container {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 5%;
+        }
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px 20px;
+        }
+        .collection-item {
+            text-decoration: none;
+            color: var(--text-main);
+            transition: 0.3s;
+        }
+        .collection-img-wrapper {
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            background-color: #eee;
+        }
+        .collection-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .collection-item:hover img { transform: scale(1.03); }
+        .collection-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .collection-link {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-light);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: 0.3s;
+        }
+        .collection-item:hover .collection-link { border-bottom: 1px solid var(--text-light); }
+        /* --- Footer (Same as Page 1) --- */
+        footer {
+            padding: 80px 5% 40px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: 100px;
+        }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
+        .footer-link { text-decoration: none; color: var(--text-main); font-size: 10px; text-transform: uppercase; letter-spacing: 2px; }
+        .copyright { font-size: 10px; color: var(--text-light); text-transform: uppercase; letter-spacing: 1.5px; }
+        @media (max-width: 1024px) {
+            .collections-grid { grid-template-columns: repeat(2, 1fr); }
+            .frame-section { flex-direction: column; min-height: auto; }
+            .frame-img { width: 100%; position: static; height: 300px; }
+            .floating-card { width: 90%; margin: -40px auto 0; padding: 40px 20px; }
+        }
+        @media (max-width: 600px) {
+            .collections-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+ </head>
+ <body>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">Shop</a>
+        <a href="#">Clothes</a>
+        <a href="#">Bags</a>
+        <a href="#">Interior</a>
+        <a href="#">Jewellery</a>
+        <a href="#">Custom made</a>
+        <a href="#">The Wedding suit</a>
+        <a href="#">Our story</a>
+    </div>
+    <header>
+        <div class="nav-left">
+            <div class="menu-icon" onclick="openNav()">☰</div>
+            <a href="#" class="nav-item-link">About me</a>
+            <a href="#" class="nav-item-link">Contact</a>
+        </div>
+        <h1 class="logo-text">Agnes Nordenholz</h1>
+        <div class="nav-right">
+            <a href="#" class="nav-item-link">Newsletter</a>
+            <div class="nav-item-link">DE | EN</div>
+            <img src="shopping-bag.png" style="height:18px;" alt="Cart">
+        </div>
+    </header>
+    <section class="frame-section">
+        <img src="img.jpg" class="frame-img" alt="Main Collection">
+        <div class="floating-card">
+            <img src="Logo.png" class="card-logo-top" alt="Logo">
+            <h1>The Collections</h1>
+        </div>
+    </section>
+    <div class="collections-container">
+        <div class="collections-grid">
+            
+            <a href="#" class="collection-item">
+                <div class="collection-img-wrapper"><img src="Coats.jpg" alt="Coats"></div>
+                <span class="collection-title">Coats</span>
+                <span class="collection-link">Explore</span>
+            </a>
+            <a href="#" class="collection-item">
+                <div class="collection-img-wrapper"><img src="Bags.jpg" alt="Bags"></div>
+                <span class="collection-title">Bags</span>
+                <span class="collection-link">Explore</span>
+            </a>
+            <a href="#" class="collection-item">
+                <div class="collection-img-wrapper"><img src="Accessoires.jpg" alt="Accessories"></div>
+                <span class="collection-title">Accessories</span>
+                <span class="collection-link">Explore</span>
+            </a>
+            <a href="#" class="collection-item">
+                <div class="collection-img-wrapper"><img src="Interior.jpg" alt="Interior"></div>
+                <span class="collection-title">Interior</span>
+                <span class="collection-link">Explore</span>
+            </a>
+            <a href="#" class="collection-item">
+                <div class="collection-img-wrapper"><img src="Jewelleries.jpg" alt="Jewelleries"></div>
+                <span class="collection-title">Jewelleries</span>
+                <span class="collection-link">Explore</span>
+            </a>
+            <a href="#" class="collection-item">
+                <div class="collection-img-wrapper"><img src="Jackets.jpg" alt="Jackets"></div>
+                <span class="collection-title">Jackets</span>
+                <span class="collection-link">Explore</span>
+            </a>
+            <a href="#" class="collection-item">
+                <div class="collection-img-wrapper"><img src="Dresses.jpg" alt="Dresses"></div>
+                <span class="collection-title">Dresses</span>
+                <span class="collection-link">Explore</span>
+            </a>
+            <a href="#" class="collection-item">
+                <div class="collection-img-wrapper"><img src="Pants.jpg" alt="Pants"></div>
+                <span class="collection-title">Pants</span>
+                <span class="collection-link">Explore</span>
+            </a>
+            <a href="#" class="collection-item">
+                <div class="collection-img-wrapper"><img src="Tops.jpg" alt="Tops"></div>
+                <span class="collection-title">Tops</span>
+                <span class="collection-link">Explore</span>
+            </a>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-links">
+            <a href="#" class="footer-link">Instagram</a>
+            <a href="#" class="footer-link">Facebook</a>
+            <a href="#" class="footer-link">TikTok</a>
+            <a href="#" class="footer-link">Legal Notice</a>
+            <a href="#" class="footer-link">AGB</a>
+            <a href="#" class="footer-link">Privcy and Policy</a>
+        </div>
+        <div class="copyright">© Agnes Nordenholz</div>
+    </footer>
+    <script>
+        function openNav() { document.getElementById("mySidebar").style.width = "320px"; }
+        function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
+    </script>
+ </body>
+ </html>

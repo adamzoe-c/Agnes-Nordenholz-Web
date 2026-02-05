@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+ <html lang="de">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Agnes Nordenholz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@200;300;400&display=swap"
+ rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fcfbf9;
+            --text-main: #1a1a1a;
+            --text-light: #666666;
+            --border-color: #e5e5e5;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        /* --- Sidebar & Header --- */
+        .sidebar { height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; left: 0; background-color: #fff; overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+ border-right: 1px solid var(--border-color); }
+        .sidebar a { padding: 15px 32px; text-decoration: none; font-size: 13px; color: var(--text-main); display: block; text-transform: uppercase; letter-spacing: 2px; font-weight: 300; }
+        .sidebar .closebtn { position: absolute; top: 10px; right: 25px; font-size: 36px; cursor: pointer; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: #fff; border-bottom: 1px solid var(--border-color);
+ position: sticky; top: 0; z-index: 1000; }
+        .nav-left, .nav-right { flex: 1; display: flex; align-items: center; gap: 20px; }
+        .nav-right { justify-content: flex-end; }
+        .menu-icon { font-size: 20px; cursor: pointer; }
+        .nav-item-link { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; color: var(--text-main); font-weight: 300; }
+        .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 24px; text-transform: uppercase; letter-spacing: 5px; flex: 2; text-align: center; margin: 0; }
+        .logo-text a { text-decoration: none; color: inherit; }
+        /* --- Contact Content --- */
+        .contact-container {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+        .contact-info h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+        }
+        .info-block {
+            margin-bottom: 30px;
+        }
+        .info-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .info-text {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+        .appointment-note {
+            margin-top: 50px;
+            padding: 20px;
+            border-left: 1px solid var(--text-main);
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+        /* --- Map Section --- */
+        .map-wrapper {
+            width: 100%;
+            height: 500px;
+            background-color: #eee;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+        /* Using an iframe to embed the map for Bleibtreustraße 34/35 */
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(100%) invert(5%) contrast(90%); /* Greyscale to match brand */
+        }
+        /* --- Footer --- */
+        footer { padding: 80px 5% 40px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 100px; }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
+        .footer-link { text-decoration: none; color: var(--text-main); font-size: 10px; text-transform: uppercase; letter-spacing: 2px; }
+        .copyright { font-size: 10px; color: var(--text-light); text-transform: uppercase; letter-spacing: 1.5px; }
+        @media (max-width: 900px) {
+            .contact-container { grid-template-columns: 1fr; gap: 60px; }
+            .map-wrapper { height: 400px; }
+        }
+    </style>
+ </head>
+ <body>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Home</a>
+        <a href="collections.html">Collections</a>
+        <a href="story.html">Our Story</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <header>
+        <div class="nav-left">
+            <div class="menu-icon" onclick="openNav()">☰</div>
+            <a href="index.html" class="nav-item-link">Back</a>
+        </div>
+        <h1 class="logo-text"><a href="index.html">Agnes Nordenholz</a></h1>
+        <div class="nav-right">
+            <div class="nav-item-link">DE | EN</div>
+        </div>
+    </header>
+    <main class="contact-container">
+        <section class="contact-info">
+            <h1>Contact</h1>
+            
+            <div class="info-block">
+                <span class="info-label">Studio Address</span>
+                <p class="info-text">
+                    AGNES NORDENHOLZ<br>
+                    Agnes Schorer<br>
+                    Bleibtreustraße 34/35<br>
+                    10707 Berlin<br>
+                    Germany
+                </p>
+            </div>
+            <div class="info-block">
+                <span class="info-label">Direct Contact</span>
+                <a href="tel:+4917622594537" class="info-text">+49 (0) 176 22 59 45 37</a><br>
+                <a href="mailto:info@agnesnordenholz.com" class="info-text">info@agnesnordenholz.com</a>
+            </div>
+            <div class="appointment-note">
+                The studio can be visited by prior appointment.
+            </div>
+        </section>
+        <section class="map-wrapper">
+            <iframe 
+                src="https://www.google.com/maps/embed?
+ pb=!1m18!1m12!1m3!1d2428.140884631326!2d13.317378976936314!3d52.50091167199464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a851fa7698c93
+ d%3A0xf953b1a2dca86aa0!2sBleibtreustra%C3%9Fe%2034%2F35%2C%2010707%20Berlin%2C%20Germany!5e0!3m2!1sen!2sus!4v1715638200000!5m2!1sen!2sus" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-links">
+            <a href="#" class="footer-link">Instagram</a>
+            <a href="#" class="footer-link">Facebook</a>
+            <a href="#" class="footer-link">TikTok</a>
+            <a href="#" class="footer-link">Legal Notice</a>
+            <a href="#" class="footer-link">AGB</a>
+             <a href="#" class="footer-link">Privcy and Policy</a>
+        </div>
+        <div class="copyright">© Agnes Nordenholz</div>
+    </footer>
+    <script>
+        function openNav() { document.getElementById("mySidebar").style.width = "320px"; }
+        function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
+    </script>
+ </body>
+ </html>
